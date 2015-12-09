@@ -48,7 +48,6 @@ class DatabaseManager(object):
         , "sEXT", "sNEU", "sAGR", "sCON", "sOPN"
         , "cEXT", "cNEU", "cAGR", "cCON", "cOPN"]]
         """
-        print(row[0])
         cursor = self.__conn.cursor()
         cursor.execute("""
             INSERT OR IGNORE INTO
@@ -111,11 +110,11 @@ class DatabaseManager(object):
                 , sAgr          REAL NOT NULL
                 , sCon          REAL NOT NULL
                 , sOpn          REAL NOT NULL
-                , cExt          TEXT NOT NULL
-                , cNeu          TEXT NOT NULL
-                , cAgr          TEXT NOT NULL
-                , cCon          TEXT NOT NULL
-                , cOpn          TEXT NOT NULL
+                , cExt          INTEGER NOT NULL
+                , cNeu          INTEGER NOT NULL
+                , cAgr          INTEGER NOT NULL
+                , cCon          INTEGER NOT NULL
+                , cOpn          INTEGER NOT NULL
             );
             """
         cursor.execute(statement)
@@ -150,11 +149,23 @@ def main(arg_list):
         , "cEXT", "cNEU", "cAGR", "cCON", "cOPN"]]
 
     for row in rows.values:
+        row = (row[0], row[1], row[2], row[3], row[4], row[5], row[6]
+            , convert_string_to_boolean(row[7])
+            , convert_string_to_boolean(row[8])
+            , convert_string_to_boolean(row[9])
+            , convert_string_to_boolean(row[10])
+            , convert_string_to_boolean(row[11]))
         dbhandler.store(row)
-
     
     dbhandler.close()
     pass
+
+def convert_string_to_boolean(string):
+    positive_values = ['y', 'yes', '1']
+    for pos in positive_values:
+        if pos == string:
+            return True
+    return False
 
 if __name__ == '__main__':
     main(sys.argv[1:])
