@@ -12,13 +12,12 @@ class CNeuReader(DataReader):
             SELECT
                 [sentence]
                 , [cNeu]
-                , RANDOM() as [rand]
             FROM
                 [Person] AS [p]
                 INNER JOIN [Sentence] AS [s]
                     ON [p].[internal_id] = [s].[author]
             ORDER BY
-                [rand] ASC
+                RANDOM()
             ;
         """
         pass
