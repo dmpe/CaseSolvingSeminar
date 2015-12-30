@@ -1,6 +1,6 @@
-### Semester project for Case Solving Seminar
-#### Customer profiling using stylometric features
+### Semester project for the Case Solving Seminar
 
+#### Customer profiling using stylometric features
 
 Paper to be available later: [https://dmpe.github.io/PapersAndArticles/](https://dmpe.github.io/PapersAndArticles/)
 

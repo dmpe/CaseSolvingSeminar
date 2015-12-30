@@ -8,7 +8,7 @@ import helper
 import featx
 
 
-db = sqlite3.connect('../data.sqlite3')
+db = sqlite3.connect('data.sqlite3')
 datareader = helper.CNeuReader(db)
 
 data = datareader.get_results()

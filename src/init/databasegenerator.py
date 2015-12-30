@@ -140,7 +140,7 @@ def main(arg_list):
     dbhandler = DatabaseManager(store_to)
     dbhandler.create_tables()
 
-    data = pd.read_csv("data.csv", parse_dates=True, infer_datetime_format=True,
+    data = pd.read_csv("../raw_data/data.csv", parse_dates=True, infer_datetime_format=True,
         sep = None, encoding = "latin-1", engine = "python")
 
     rows = data[[
