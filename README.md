@@ -1,4 +1,5 @@
 ### Semester project for the Case Solving Seminar
+<http://www.wi2.fau.de/teaching/master/master-courses/css/>
 
 #### Customer profiling using stylometric features
 
