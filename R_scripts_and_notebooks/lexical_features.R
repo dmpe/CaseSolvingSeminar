@@ -19,6 +19,7 @@ for (i in 1:length(data_n$STATUS)) {
   data_n$Avarage_Word_Lenght[[i]] <- round((data.frame(t(stri_stats_latex(data_n$STATUS[i])))$CharsWord / data_n$Number_of_Words[[i]]), 3)
   data_n$Lexical_Diversity[[i]] <- round(quanteda::lexdiv(dfm(data_n$STATUS[i], verbose = F, removeNumbers = F, removePunct = F, removeSeparators = F), "TTR"), 3)
 }
+data_n$Avarage_Word_Lenght[is.nan(data_n$Avarage_Word_Lenght)] <- 0
 
 colnames(data_n)[1] <- "#AUTHID" ## WTF?
 write.csv(data_n, "~/Documents/python-notebook/raw_data/data_n.csv")
