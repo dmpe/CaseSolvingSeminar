@@ -36,11 +36,19 @@ train_feats, test_feats = split_label_feats(label_feats)
 
 from nltk.classify import NaiveBayesClassifier
 nb_classifier = NaiveBayesClassifier.train(train_feats)
-print('nb_classifier.labels() => %s' % nb_classifier.labels())
+#print('nb_classifier.labels() => %s' % nb_classifier.labels())
 
 acc = nltk.classify.util.accuracy(nb_classifier, test_feats)
 print('accuracy => %s' % acc)
 
+
+from nltk.classify import scikitlearn
+from nltk.classify.scikitlearn import SklearnClassifier
+from sklearn.naive_bayes import MultinomialNB
+sk_classifier = SklearnClassifier(MultinomialNB())
+sk_classifier.train(train_feats)
+acc = nltk.classify.util.accuracy(sk_classifier, test_feats)
+print('accuracy => %s' % acc)
 
 
 
