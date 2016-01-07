@@ -1,5 +1,6 @@
+
+README.html
 .ipynb_checkpoints
-data.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -80,5 +81,6 @@ vignettes/*.pdf
 
 # OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
 .httr-oauth
+
 
 
