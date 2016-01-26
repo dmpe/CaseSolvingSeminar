@@ -7,6 +7,7 @@ library(readr)
 #library(betareg)
 library(scales)
 library(h2o)
+library(mxnet)
 
 dataall <- readr::read_csv("~/Documents/python-notebook/raw_data/data_n.csv")
 # dataall$cEXT <- as.factor(ifelse(dataall$cEXT == "y", 1, 0))
@@ -53,7 +54,8 @@ prestige.rmse <- sqrt(mean((prestige.predict - prestige.test$income)^2))
 
 n <- names(dataWeNeed.train)
 f <- as.formula(paste("cEXT + cNEU + cAGR + cCON + cOPN ~", paste(n[!n %in% c("STATUS", "cEXT","cNEU", "cAGR", "cCON", "cOPN")], collapse = " + ")))
-mdl <- neuralnet(f,data=dataWeNeed.train, hidden=5, threshold=0.01)
+mdl <- neuralnet(f, data=dataWeNeed.train, hidden=5, threshold=0.01)
+print(mdl)
 
 net.results <- compute(mdl, dataWeNeed.test) 
 ls(net.results)
@@ -85,4 +87,18 @@ model <- h2o.deeplearning( x = 12:19,  # column numbers for predictors
 
 h2o_yhat_test <- h2o.predict(model, dataWeNeed.test_h2o)
 df_yhat_test <- as.data.frame(h2o_yhat_test)
+
+## Model 4
+
+dmt <- data.matrix(dataWeNeed.train[2:19])
+dmtt <- data.matrix(dataWeNeed.test[2:19])
+
+mx.set.seed(5152)
+model <- mx.mlp(dmt[,10:18],dmt[,8], hidden_node=8, out_node=2, out_activation="softmax",
+                num.round=20, array.batch.size=15, learning.rate=0.07, momentum=0.9, 
+                eval.metric=mx.metric.accuracy)
+
+preds = predict(model, dmtt[,10:18])
+pred.label = max.col(t(preds))-1
+table(pred.label, dmtt[,8])
 
