@@ -27,11 +27,11 @@ dataall <- dataall[,c(3:13, 22:29)]
 #mdf <- missing_data.frame(data.frame(dataWeNeed.test))
 #show(mdf)
 
-maxs <- apply(dataall[,2:6], 2, max) 
+maxs <- apply(dataall[,2:6], 2, max)
 mins <- apply(dataall[,2:6], 2, min)
 dataall[,2:6] <- as.data.frame(scale(dataall[,2:6], center = mins, scale = maxs - mins))
 
-maxs <- apply(dataall[,12:18], 2, max) 
+maxs <- apply(dataall[,12:18], 2, max)
 mins <- apply(dataall[,12:18], 2, min)
 dataall[,12:18] <- as.data.frame(scale(dataall[,12:18], center = mins, scale = maxs - mins))
 
@@ -44,7 +44,7 @@ dataWeNeed.test <- dataall[-trainIndex, ]
 ### Model #1 - nnet
 mod4 <- train(cEXT + cNEU + cAGR + cCON + cOPN ~ ., method='nnet', data=dataWeNeed.train,  size = 5)
 prestige.predict <- predict(mod4, newdata = dataWeNeed.test)
-prestige.rmse <- sqrt(mean((prestige.predict - prestige.test$income)^2)) 
+prestige.rmse <- sqrt(mean((prestige.predict - prestige.test$income)^2))
 
 ### Model #2 - neuralnet; requires integers not factors in binary variables
 # https://stackoverflow.com/questions/17457028/working-with-neuralnet-in-r-for-the-first-time-get-requires-numeric-complex-ma
@@ -57,7 +57,7 @@ f <- as.formula(paste("cEXT + cNEU + cAGR + cCON + cOPN ~", paste(n[!n %in% c("S
 mdl <- neuralnet(f, data=dataWeNeed.train, hidden=5, threshold=0.01)
 print(mdl)
 
-net.results <- compute(mdl, dataWeNeed.test) 
+net.results <- compute(mdl, dataWeNeed.test)
 ls(net.results)
 print(net.results$net.result)
 
@@ -95,7 +95,7 @@ dmtt <- data.matrix(dataWeNeed.test[2:19])
 
 mx.set.seed(5152)
 model <- mx.mlp(dmt[,10:18],dmt[,8], hidden_node=8, out_node=2, out_activation="softmax",
-                num.round=20, array.batch.size=15, learning.rate=0.07, momentum=0.9, 
+                num.round=20, array.batch.size=15, learning.rate=0.07, momentum=0.9,
                 eval.metric=mx.metric.accuracy)
 
 preds = predict(model, dmtt[,10:18])
