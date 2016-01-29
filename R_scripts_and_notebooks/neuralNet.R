@@ -41,8 +41,8 @@ trainIndex <- createDataPartition(dataall$cCON, p=0.66, list = F)
 dataWeNeed.train <- dataall[trainIndex, ]
 dataWeNeed.test <- dataall[-trainIndex, ]
 
-### Model #1 - nnet
-mod4 <- train(cEXT + cNEU + cAGR + cCON + cOPN ~ ., method='nnet', data=dataWeNeed.train,  size = 5)
+### Model #1 - nnet + cNEU + cAGR + cCON + cOPN 
+mod4 <- train(cEXT ~ ., method='nnet', data=dataWeNeed.train,  size = 5)
 prestige.predict <- predict(mod4, newdata = dataWeNeed.test)
 prestige.rmse <- sqrt(mean((prestige.predict - prestige.test$income)^2))
 
@@ -67,9 +67,6 @@ cleanoutput <- cbind(dataWeNeed.test,sqrt(dataWeNeed.test),
 
 colnames(cleanoutput) <- c("Input","Expected Output","Neural Net Output")
 print(cleanoutput)
-
-
-
 
 
 ### Model #3 - h2o, can only work with one 'y'

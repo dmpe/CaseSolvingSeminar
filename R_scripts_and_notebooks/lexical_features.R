@@ -16,6 +16,9 @@ library(MASS)
 library(wordcloud)
 library(syuzhet)
 
+tagger_path <- "/home/jm/Documents/stanford-corenlp-full-2015-12-09"
+stanford_vector <- get_sentiment(get_sentences(data_n$STATUS), method = "stanford", tagger_path)
+
 data_n <- readr::read_csv("~/Documents/python-notebook/raw_data/data_utf8.csv")
 data_n$StringLength <- stri_length(data_n$STATUS)
 
@@ -30,13 +33,13 @@ for (i in 1:length(data_n$STATUS)) {
 
 for (k in 1:length(data_n$STATUS)) {
   dfmStatus <- dfm(data_n$STATUS[k], verbose = F, removeNumbers = F, removePunct = F, removeSeparators = F)
-  sentimentAna <- get_nrc_sentiment(data_n$STATUS[k])
   data_n$Lexical_Diversity[[k]] <- round(quanteda::lexdiv(dfmStatus, measure = "TTR"), 3)
-  data_n$POS_sentiment[[k]] <- sentimentAna$positive
-  data_n$NEG_sentiment[[k]] <- sentimentAna$negative
+  data_n$POS_sentiment[[k]] <- get_nrc_sentiment(data_n$STATUS[k])$positive
+  data_n$NEG_sentiment[[k]] <- get_nrc_sentiment(data_n$STATUS[k])$negative
+  data_n$OverAll_sentiment[[k]] <- (data_n$NEG_sentiment[[k]]*-1) + data_n$POS_sentiment[[k]]
 }
 
-data_n$Avarage_Word_Lenght[is.nan(data_n$Avarage_Word_Lenght)] <- 0
 
-colnames(data_n)[1] <- "#AUTHID" ## WTF?
+data_n$Avarage_Word_Lenght[is.nan(data_n$Avarage_Word_Lenght)] <- 0
+colnames(data_n)[1] <- "#AUTHID"
 write.csv(data_n, "~/Documents/python-notebook/raw_data/data_n.csv")
