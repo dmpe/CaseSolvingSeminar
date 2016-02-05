@@ -16,8 +16,8 @@ library(MASS)
 library(wordcloud)
 library(syuzhet)
 
-tagger_path <- "/home/jm/Documents/stanford-corenlp-full-2015-12-09"
-stanford_vector <- get_sentiment(get_sentences(data_n$STATUS), method = "stanford", tagger_path)
+# tagger_path <- "/home/jm/Documents/stanford-corenlp-full-2015-12-09"
+# stanford_vector <- get_sentiment(get_sentences(data_n$STATUS), method = "stanford", tagger_path)
 
 data_n <- readr::read_csv("~/Documents/python-notebook/raw_data/data_utf8.csv")
 data_n$StringLength <- stri_length(data_n$STATUS)

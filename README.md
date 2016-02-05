@@ -1,7 +1,7 @@
-### Semester project for the Case Solving Seminar
+## Semester project for the Case Solving Seminar
 <http://www.wi2.fau.de/teaching/master/master-courses/css/>
 
-#### Customer profiling using stylometric features
+### Customer profiling using stylometric features
 
 Paper to be available later: [https://dmpe.github.io/PapersAndArticles/](https://dmpe.github.io/PapersAndArticles/)
 
@@ -14,3 +14,9 @@ Team members:
 * [@dmpe](https://github.com/dmpe)
 * [@dustinwind](https://github.com/dustywind)
 * Keekan
+
+### Installation of python etc. tools
+
+You can use the script from here https://gist.github.com/dmpe/3a8987e9197b86b636ba
+
+So, basically, `wget list.txt && sudo pip3 install -r text.txt`. Yee, you need to download that file locally!
