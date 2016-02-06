@@ -11,4 +11,7 @@
 * Use only 2 NB, 2 SVM, kNN, RF, AdaBoost = 7 instead of current 8/9 with Ensemble
   * Multi + Bernulli  
   * rbf kernel + linear
-* 
+  * 
+
+### Some feautures
+* number of function words
