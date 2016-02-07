@@ -1,6 +1,8 @@
 # https://github.com/Rexamine/stringi/issues/212
 # https://stat.ethz.ch/pipermail/r-help/2006-May/105280.html
 # https://stackoverflow.com/questions/8697079/remove-all-punctuation-except-apostrophes-in-r
+# https://github.com/Charudatt89/Personality_Recognition/blob/master/22-9-PersonalityRecognition/SourceCode/FEATURE_BASED_APPROACH/source_code/pos_tagging_2.py
+# https://en.wikipedia.org/wiki/English_personal_pronouns
 
 library(openNLP)
 library(NLP)
@@ -10,20 +12,28 @@ library(stringi)
 library(stringr)
 library(quanteda)
 library(SnowballC)
-library(methods)
 library(readr)
-library(Rcpp)
-library(utils)
-library(stats)
-library(MASS)
 library(wordcloud)
 library(syuzhet)
 library(qdap)
+library(lubridate)
 
 # tagger_path <- "/home/jm/Documents/stanford-corenlp-full-2015-12-09"
 # stanford_vector <- get_sentiment(get_sentences(data_n$STATUS), method = "stanford", tagger_path)
 
 fw <- function.words
+
+# Personal pronouns
+first_person_singular <- c('I', 'i','me','my','mine', 'myself')
+second_person_sing_plu = c('you', 'your','yours', 'yourself', 'yourselves')
+third_person_singular = c( 'he','she','it','his','her','hers','its','him', 'himself', 'herself', 'itself')
+first_person_plural = c( 'we','us','our','ours', "ourselves")
+third_person_plural =c( 'they','them','their','theirs','themselves')
+
+personalPronouns <- c(first_person_singular, second_person_sing_plu, third_person_singular, first_person_plural, third_person_plural)
+
+# Parsing data if needed
+# parse_date_time("06/19/09 03:21 PM", "mdy IM p")
 
 data_n <- readr::read_csv("~/Documents/python-notebook/raw_data/data_utf8.csv")
 data_n$StringLength <- stri_length(data_n$STATUS)
@@ -34,7 +44,7 @@ for (i in 1:length(data_n$STATUS)) {
   data_n$Number_of_Commas[[i]] <- stri_count_fixed(data_n$STATUS[i], ",")
   data_n$Number_of_Semicolons[[i]] <- stri_count_fixed(data_n$STATUS[i], ";")
   data_n$Number_of_Colons[[i]] <- stri_count_fixed(data_n$STATUS[i], ":")
-  data_n$Avarage_Word_Lenght[[i]] <- round((data.frame(t(stri_stats_latex(data_n$STATUS[i])))$CharsWord / data_n$Number_of_Words[[i]]), 3)
+  data_n$Average_Word_Length[[i]] <- round((data.frame(t(stri_stats_latex(data_n$STATUS[i])))$CharsWord / data_n$Number_of_Words[[i]]), 3)
   data_n$POS_sentiment[[i]] <- get_nrc_sentiment(data_n$STATUS[i])$positive
   data_n$NEG_sentiment[[i]] <- get_nrc_sentiment(data_n$STATUS[i])$negative
   data_n$OverAll_sentiment[[i]] <- (data_n$NEG_sentiment[[i]]*-1) + data_n$POS_sentiment[[i]]
@@ -46,12 +56,16 @@ for (k in 1:length(data_n$STATUS)) {
   
   data_n$Lexical_Diversity[[k]] <- round(quanteda::lexdiv(dfmStatus, measure = "TTR"), 3)
   data_n$Number_of_FunctionalWords[[k]] <- sum(splittedWords %in% fw)
+  data_n$Number_of_Pronouns[[k]] <- sum(splittedWords %in% personalPronouns)
+  data_n$Number_of_PROPNAMEs[[k]] <- sum(stri_count_fixed(data_n$STATUS[k], "*PROPNAME*"))
+  
 }
 
 
-data_n$Avarage_Word_Lenght[is.nan(data_n$Avarage_Word_Lenght)] <- 0
+data_n$Average_Word_Length[is.nan(data_n$Average_Word_Length)] <- 0
 colnames(data_n)[1] <- "#AUTHID"
 write.csv(data_n, "~/Documents/python-notebook/raw_data/data_n.csv")
+
 
 
 
