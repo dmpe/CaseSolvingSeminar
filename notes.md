@@ -13,6 +13,3 @@
   * rbf kernel + linear
   * 
 
-### Some feautures
-* Sentiment "services" ? -> <https://market.mashape.com/vivekn/sentiment-3>
-  * <https://github.com/Charudatt89/Personality_Recognition/blob/master/22-9-PersonalityRecognition/SourceCode/FEATURE_BASED_APPROACH/source_code/run_sentiment_8.sh>
