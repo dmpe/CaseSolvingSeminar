@@ -25,7 +25,7 @@ gbmFit1 <- train(cCON ~ ., data = dataWeNeed.train, method = "svmLinear", trCont
 
 data1_4991 <- fromJSON("~/Documents/python-notebook/raw_data/setiment_data_scripts/text-processing-com/result_1_4991.json")
 data4991_end <- fromJSON("~/Documents/python-notebook/raw_data/setiment_data_scripts/text-processing-com/result_4991_end.json")
-data_text_sentiment <- rbind.fill(data1_4991,data4991_end)
+data_text_sentiment <- rbind.fill(data1_4991, data4991_end)
 
 
 summary(as.factor(dataall$cEXT))
@@ -34,4 +34,7 @@ summary(as.factor(dataall$cAGR))
 summary(as.factor(dataall$cCON))
 summary(as.factor(dataall$cOPN))
 
+
+
+data_result2 <- fromJSON("~/Documents/python-notebook/raw_data/setiment_data_scripts/community-sentiment-mashape-com/result2.json")
 
