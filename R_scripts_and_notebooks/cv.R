@@ -2,6 +2,8 @@ library(caret)
 library(readr)
 library("e1071")
 library(kernlab)
+library(jsonlite)
+library(plyr)
 
 dataall <- readr::read_csv("~/Documents/python-notebook/raw_data/data_n.csv")
 dataall$cEXT <- as.factor(ifelse(dataall$cEXT == "y", 1, 0))
@@ -19,5 +21,17 @@ dataWeNeed.test <- dataall[-trainIndex, ]
 
 gbmFit1 <- train(cCON ~ ., data = dataWeNeed.train, method = "svmLinear", trControl = fitControl)
 
+#############################
+
+data1_4991 <- fromJSON("~/Documents/python-notebook/raw_data/setiment_data_scripts/text-processing-com/result_1_4991.json")
+data4991_end <- fromJSON("~/Documents/python-notebook/raw_data/setiment_data_scripts/text-processing-com/result_4991_end.json")
+data_text_sentiment <- rbind.fill(data1_4991,data4991_end)
+
+
+summary(as.factor(dataall$cEXT))
+summary(as.factor(dataall$cNEU))
+summary(as.factor(dataall$cAGR))
+summary(as.factor(dataall$cCON))
+summary(as.factor(dataall$cOPN))
 
 
