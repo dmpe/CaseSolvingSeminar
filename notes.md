@@ -4,12 +4,10 @@
 * word length + word count soll eine variable ermitteln (z.B. cNeu)
 * number of smileys?
 
-### TODO on Server
-(Broad Ideas)
+### Broad Ideas
 
 * Supervised Learning (no Neural Networks at all)
 * Use only 2 NB, 2 SVM, kNN, RF, AdaBoost = 7 instead of current 8/9 with Ensemble
   * Multi + Bernulli  
   * rbf kernel + linear
-  * 
 
