@@ -5,7 +5,7 @@ library(kernlab)
 library(jsonlite)
 library(plyr)
 
-dataall <- readr::read_csv("~/Documents/python-notebook/raw_data/data_n.csv")
+dataall <- readr::read_csv("~/Documents/caseSolvingSeminar/raw_data/data_n.csv")
 dataall$cEXT <- as.factor(ifelse(dataall$cEXT == "y", 1, 0))
 dataall$cNEU <- as.factor(ifelse(dataall$cNEU == "y", 1, 0))
 dataall$cAGR <- as.factor(ifelse(dataall$cAGR == "y", 1, 0))
@@ -23,8 +23,8 @@ gbmFit1 <- train(cCON ~ ., data = dataWeNeed.train, method = "svmLinear", trCont
 
 #############################
 
-data1_4991 <- fromJSON("~/Documents/python-notebook/raw_data/setiment_data_scripts/text-processing-com/result_1_4991.json")
-data4991_end <- fromJSON("~/Documents/python-notebook/raw_data/setiment_data_scripts/text-processing-com/result_4991_end.json")
+data1_4991 <- fromJSON("~/Documents/caseSolvingSeminar/raw_data/setiment_data_scripts/text-processing-com/result_1_4991.json")
+data4991_end <- fromJSON("~/Documents/caseSolvingSeminar/raw_data/setiment_data_scripts/text-processing-com/result_4991_end.json")
 data_text_sentiment <- rbind.fill(data1_4991, data4991_end)
 
 

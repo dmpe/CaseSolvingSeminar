@@ -9,7 +9,7 @@ library(scales)
 library(h2o)
 library(mxnet)
 
-dataall <- readr::read_csv("~/Documents/python-notebook/raw_data/data_n.csv")
+dataall <- readr::read_csv("~/Documents/caseSolvingSeminar/raw_data/data_n.csv")
 # dataall$cEXT <- as.factor(ifelse(dataall$cEXT == "y", 1, 0))
 # dataall$cNEU <- as.factor(ifelse(dataall$cNEU == "y", 1, 0))
 # dataall$cAGR <- as.factor(ifelse(dataall$cAGR == "y", 1, 0))

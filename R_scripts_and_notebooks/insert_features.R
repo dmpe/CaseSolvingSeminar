@@ -28,14 +28,14 @@ first_person_singular <- c('I', 'i','me','my','mine', 'myself')
 second_person_sing_plu = c('you', 'your','yours', 'yourself', 'yourselves')
 third_person_singular = c( 'he','she','it','his','her','hers','its','him', 'himself', 'herself', 'itself')
 first_person_plural = c( 'we','us','our','ours', "ourselves")
-third_person_plural =c( 'they','them','their','theirs','themselves')
+third_person_plural = c( 'they','them','their','theirs','themselves')
 
 personalPronouns <- c(first_person_singular, second_person_sing_plu, third_person_singular, first_person_plural, third_person_plural)
 
 # Parsing data if needed
 # parse_date_time("06/19/09 03:21 PM", "mdy IM p")
 
-data_n <- readr::read_csv("~/Documents/python-notebook/raw_data/data_utf8.csv")
+data_n <- readr::read_csv("~/Documents/caseSolvingSeminar/raw_data/data_utf8.csv")
 data_n$StringLength <- stri_length(data_n$STATUS)
 
 for (i in 1:length(data_n$STATUS)) {
@@ -64,7 +64,7 @@ for (k in 1:length(data_n$STATUS)) {
 
 data_n$Average_Word_Length[is.nan(data_n$Average_Word_Length)] <- 0
 colnames(data_n)[1] <- "#AUTHID"
-write.csv(data_n, "~/Documents/python-notebook/raw_data/data_n.csv")
+write.csv(data_n, "~/Documents/caseSolvingSeminar/raw_data/data_n.csv")
 
 
 
