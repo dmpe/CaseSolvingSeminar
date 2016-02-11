@@ -37,6 +37,12 @@ personalPronouns <- c(first_person_singular, second_person_sing_plu, third_perso
 # parse_date_time("06/19/09 03:21 PM", "mdy IM p")
 
 data_sentiment <- fromJSON("~/Documents/caseSolvingSeminar/raw_data/setiment_data_scripts/community-sentiment-mashape-com/result2.json")
+data_sentiment$confidence <- data_sentiment$result$confidence
+data_sentiment$Sentiment_Word <- data_sentiment$result$sentiment
+data_sentiment$Sentiment_Numeric <- ifelse(data_sentiment$Sentiment_Word == "Neutral", 2, 
+                                           ifelse(data_sentiment$Sentiment_Word == "Positive", 1, 0)
+)
+data_sentiment$result <- NULL
 
 data_n <- readr::read_csv("~/Documents/caseSolvingSeminar/raw_data/data_utf8.csv")
 data_n$StringLength <- stri_length(data_n$STATUS)
@@ -61,10 +67,9 @@ for (k in 1:length(data_n$STATUS)) {
   data_n$Number_of_FunctionalWords[[k]] <- sum(splittedWords %in% fw)
   data_n$Number_of_Pronouns[[k]] <- sum(splittedWords %in% personalPronouns)
   data_n$Number_of_PROPNAMEs[[k]] <- sum(stri_count_fixed(data_n$STATUS[k], "*PROPNAME*"))
-  
 }
 
-
+data_n$SentimentNumeric <- data_sentiment$Sentiment_Numeric
 data_n$Average_Word_Length[is.nan(data_n$Average_Word_Length)] <- 0
 colnames(data_n)[1] <- "#AUTHID"
 write.csv(data_n, "~/Documents/caseSolvingSeminar/raw_data/data_n.csv")
