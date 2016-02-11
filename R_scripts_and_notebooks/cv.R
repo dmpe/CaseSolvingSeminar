@@ -34,5 +34,4 @@ summary(as.factor(dataall$cAGR))
 summary(as.factor(dataall$cCON))
 summary(as.factor(dataall$cOPN))
 
-data_result2 <- fromJSON("~/Documents/caseSolvingSeminar/raw_data/setiment_data_scripts/community-sentiment-mashape-com/result2.json")
 

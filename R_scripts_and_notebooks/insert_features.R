@@ -17,6 +17,7 @@ library(wordcloud)
 library(syuzhet)
 library(qdap)
 library(lubridate)
+library(jsonlite)
 
 # tagger_path <- "/home/jm/Documents/stanford-corenlp-full-2015-12-09"
 # stanford_vector <- get_sentiment(get_sentences(data_n$STATUS), method = "stanford", tagger_path)
@@ -34,6 +35,8 @@ personalPronouns <- c(first_person_singular, second_person_sing_plu, third_perso
 
 # Parsing data if needed
 # parse_date_time("06/19/09 03:21 PM", "mdy IM p")
+
+data_sentiment <- fromJSON("~/Documents/caseSolvingSeminar/raw_data/setiment_data_scripts/community-sentiment-mashape-com/result2.json")
 
 data_n <- readr::read_csv("~/Documents/caseSolvingSeminar/raw_data/data_utf8.csv")
 data_n$StringLength <- stri_length(data_n$STATUS)
