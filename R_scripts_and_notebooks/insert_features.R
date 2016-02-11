@@ -66,7 +66,7 @@ data_n$Average_Word_Length[is.nan(data_n$Average_Word_Length)] <- 0
 colnames(data_n)[1] <- "#AUTHID"
 write.csv(data_n, "~/Documents/caseSolvingSeminar/raw_data/data_n.csv")
 
-
+# write.csv(data_n$STATUS, "~/Documents/caseSolvingSeminar/raw_data/data_statuses_only.csv", row.names = FALSE)
 
 
 
