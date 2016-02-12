@@ -5,21 +5,30 @@ library(kernlab)
 library(jsonlite)
 library(plyr)
 
+set.seed(5152)
+
 dataall <- readr::read_csv("~/Documents/caseSolvingSeminar/raw_data/data_n.csv")
 dataall$cEXT <- as.factor(ifelse(dataall$cEXT == "y", 1, 0))
 dataall$cNEU <- as.factor(ifelse(dataall$cNEU == "y", 1, 0))
 dataall$cAGR <- as.factor(ifelse(dataall$cAGR == "y", 1, 0))
 dataall$cCON <- as.factor(ifelse(dataall$cCON == "y", 1, 0))
 dataall$cOPN <- as.factor(ifelse(dataall$cOPN == "y", 1, 0))
-dataall <- dataall[,c(3:13, 22:29)]
+dataall <- dataall[,12:33]
+dataall <- dataall[,c(1, 11:22)]
 
-fitControl <- trainControl(method = "repeatedcv", number = 10)
+fitControl <- trainControl(method = "repeatedcv", number = 10, repeats = 2, seeds = 5152)
 
 trainIndex <- createDataPartition(dataall$cCON, p = 0.66, list = F)
 dataWeNeed.train <- dataall[trainIndex, ]
 dataWeNeed.test <- dataall[-trainIndex, ]
 
+
 gbmFit1 <- train(cCON ~ ., data = dataWeNeed.train, method = "svmLinear", trControl = fitControl)
+gbmFit1
+
+knnPredict1 <- predict(gbmFit1, newdata = dataWeNeed.test)
+cmat1 <- confusionMatrix(data = knnPredict1, reference = dataWeNeed.test$cCON)
+cmat1
 
 #############################
 
