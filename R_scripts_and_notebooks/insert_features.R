@@ -54,9 +54,9 @@ for (i in 1:length(data_n$STATUS)) {
   data_n$Number_of_Semicolons[[i]] <- stri_count_fixed(data_n$STATUS[i], ";")
   data_n$Number_of_Colons[[i]] <- stri_count_fixed(data_n$STATUS[i], ":")
   data_n$Average_Word_Length[[i]] <- round((data.frame(t(stri_stats_latex(data_n$STATUS[i])))$CharsWord / data_n$Number_of_Words[[i]]), 3)
-  data_n$POS_sentiment[[i]] <- get_nrc_sentiment(data_n$STATUS[i])$positive
-  data_n$NEG_sentiment[[i]] <- get_nrc_sentiment(data_n$STATUS[i])$negative
-  data_n$OverAll_sentiment[[i]] <- (data_n$NEG_sentiment[[i]]*-1) + data_n$POS_sentiment[[i]]
+  # data_n$POS_sentiment[[i]] <- get_nrc_sentiment(data_n$STATUS[i])$positive
+  # data_n$NEG_sentiment[[i]] <- get_nrc_sentiment(data_n$STATUS[i])$negative
+  # data_n$OverAll_sentiment[[i]] <- (data_n$NEG_sentiment[[i]]*-1) + data_n$POS_sentiment[[i]]
 }
 
 for (k in 1:length(data_n$STATUS)) {
@@ -75,6 +75,7 @@ colnames(data_n)[1] <- "#AUTHID"
 write.csv(data_n, "~/Documents/caseSolvingSeminar/raw_data/data_n.csv")
 
 # write.csv(data_n$STATUS, "~/Documents/caseSolvingSeminar/raw_data/data_statuses_only.csv", row.names = FALSE)
+# data_n <- readr::read_csv("~/Documents/caseSolvingSeminar/raw_data/data_n.csv")
 
 
 
