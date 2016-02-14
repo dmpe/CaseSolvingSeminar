@@ -2,6 +2,15 @@
 README.html
 .ipynb_checkpoints
 
+#python nltk-book
+books/
+
+#databases
+*.sqlite3
+
+#vim files
+*.swp
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
