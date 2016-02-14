@@ -1,9 +1,12 @@
 library(caret)
 library(readr)
-library("e1071")
+library(e1071)
 library(kernlab)
 library(jsonlite)
 library(plyr)
+library(ROCR)
+library(pROC)
+library(plotROC)
 
 set.seed(5152)
 
@@ -29,6 +32,27 @@ gbmFit1
 knnPredict1 <- predict(gbmFit1, newdata = dataWeNeed.test)
 cmat1 <- confusionMatrix(data = knnPredict1, reference = dataWeNeed.test$cCON)
 cmat1
+
+#############################
+
+
+dataYPREDextBNB <- readr::read_csv("raw_data/y_pred_class_labels/ext_predttAD.csv", col_names = F)
+dataEXTtest <- readr::read_csv("raw_data/test_class_labels/ext_test.csv", col_names = F)
+
+
+cmat1 <- confusionMatrix(data = dataYPREDextBNB$X1, reference = dataEXTtest$X2, positive = "1")
+cmat1
+
+red <- prediction(dataYPREDextBNB$X1, dataEXTtest$X2, label.ordering = c("1", "0"))
+perf <- performance( red, "tpr", "fpr" )
+plot( perf )
+
+qw <- roc(dataEXTtest$X2, dataYPREDextBNB$X1, plot = T)
+qw
+
+ds <- data.frame(data = dataYPREDextBNB$X1, reference = dataEXTtest$X2)
+ggplot(ds, aes(d = data, m = reference)) + geom_roc() + style_roc()
+
 
 #############################
 
