@@ -17,8 +17,6 @@ class CNeuReader(DataReader):
                 [Person] AS [p]
                 INNER JOIN [Sentence] AS [s]
                     ON [p].[internal_id] = [s].[author]
-            ORDER BY
-                RANDOM()
             ;
         """
         pass
