@@ -91,7 +91,8 @@ class DatabaseManager(object):
                 Sentence
             VALUES
                 (
-                    :internal_id
+                    NULL
+                    , :internal_id
                     , :sentence
                 )
             ;
@@ -103,7 +104,7 @@ class DatabaseManager(object):
         cursor = self.__conn.cursor()
         statement = """
             CREATE TABLE IF NOT EXISTS Person (
-                internal_id     INTEGER PRIMARY KEY AUTOINCREMENT
+                internal_id     INTEGER PRIMARY KEY
                 , external_id   TEXT UNIQUE NOT NULL
                 , sExt          REAL NOT NULL
                 , sNeu          REAL NOT NULL
@@ -124,10 +125,11 @@ class DatabaseManager(object):
         cursor = self.__conn.cursor()
         statement = """
             CREATE TABLE IF NOT EXISTS Sentence (
-                Author          INTEGER
-                , Sentence        TEXT
+                sentence_id     INTEGER PRIMARY KEY
+                , author        INTEGER
+                , sentence      TEXT
 
-                , FOREIGN KEY (Author) REFERENCES Person(internal_id)
+                , FOREIGN KEY (author) REFERENCES Person(internal_id)
             );
         """
         cursor.execute(statement)
