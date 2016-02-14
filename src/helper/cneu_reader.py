@@ -5,6 +5,7 @@ class CNeuReader(DataReader):
     
     def __init__(self, sqlite_connection):
         super(CNeuReader, self).__init__(sqlite_connection)
+        self._header = ['sentence', 'cNeu']
         pass
 
     def _get_query(self):

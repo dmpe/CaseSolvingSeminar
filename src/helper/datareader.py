@@ -1,11 +1,16 @@
 
+import numpy
+import pandas
 import sqlite3
+
+from pandas.core.frame import DataFrame
 
 class DataReader(object):
 
     def __init__(self, sqlite_connection):
         self.__sql_conn = sqlite_connection
         self.__cache = None
+        self._header = None
         pass
 
     def _get_query(self):
@@ -18,22 +23,26 @@ class DataReader(object):
         return result
 
     def get_results(self):
-        if not self.__cache:
-            self.__cache = self.__get_results()
-        return self.__cache
-        pass
-
-    def clear_cache(self):
-        self.__cache = None
-
-    def __get_results(self):
         query = self._get_query()
         query_args = self._get_query_arguments()
         cursor = self.__sql_conn.cursor()
 
         cursor.execute(query, query_args)
+        iterable_data = cursor.fetchall()
+        return self._create_output(iterable_data)
 
-        return [self._result_converter(r) for r in cursor.fetchall() ]
+    def _create_output(self, iterable_data):
+        df = DataFrame()
 
+        if self._header:
+            df = df.append(DataFrame(columns=self._header))
 
+        matrix = DataFrame(
+            [self._result_converter(data) for data in iterable_data]
+            , columns=self._header
+        )
+
+        df = df.append(matrix, ignore_index=True)
+
+        return df
 
