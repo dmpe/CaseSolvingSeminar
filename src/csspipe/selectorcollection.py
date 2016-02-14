@@ -13,7 +13,9 @@ class SelectorCollection(object):
             'chi2'
             , sklearn.feature_selection.SelectKBest(
                 sklearn.feature_selection.chi2
-                , k=1000))
+                , k=1000
+            )
+        )
         pass
 
 

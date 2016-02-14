@@ -14,5 +14,12 @@ class PipeFactory(object):
         self.selectors = SelectorCollection()
         pass
 
+    def create_tfidf_nb(self):
+        pipe = sklearn.pipeline.Pipeline([
+            self.extractors.tfidf_vectorizer
+            , self.selectors.select_k_best
+            , self.classifiers.multinomial_nb
+        ])
+        return pipe
     
     

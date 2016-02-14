@@ -27,10 +27,10 @@ class ClassifierCollection(object):
     def _init_naive_bayes(self):
         ## Naive Bayes
         # http://scikit-learn.org/stable/modules/naive_bayes.html
-        self.multinomial_nb= (
+        self.multinomial_nb = (
             "Naive Bayes classifier for multinomial models"
             , sklearn.naive_bayes.MultinomialNB())
-        self.bernoulli_nb= (
+        self.bernoulli_nb = (
             "Naive Bayes classifier for multivariate Bernoulli models"
             , sklearn.naive_bayes.BernoulliNB())
         pass
