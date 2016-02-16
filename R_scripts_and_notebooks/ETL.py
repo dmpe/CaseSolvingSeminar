@@ -33,7 +33,7 @@ class ColumnAll(object):
         return self
 
     def transform(self, x):
-        print("debug Col-Selec ALL")
+        # print("debug Col-Selec ALL")
         data_all = x.iloc[:, :]
         return data_all
 
@@ -43,14 +43,14 @@ class ColumnSelector(object):
 
     def transform(self, x):
         string_col = x.iloc[:, 0]
-        print("debug Col-Selec (STATUS only)")
+        # print("debug Col-Selec (STATUS only)")
         #print(string_col.shape)
         return string_col
     
 class ColumnExtractor(object):
     def transform(self, x):
         cols = x.iloc[:, 1:]
-        print("debug Col-Extrac (Rest)")
+        # print("debug Col-Extrac (Rest)")
         #print(cols.shape)
         return cols
 
