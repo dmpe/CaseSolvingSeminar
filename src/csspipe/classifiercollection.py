@@ -8,6 +8,7 @@ from sklearn import neighbors
 
 class ClassifierCollection(object):
     def __init__(self):
+        self._init_support_vector_machines()
         self._init_naive_bayes()
         self._init_ensemble_methods()
         self._init_neighbor_methods()

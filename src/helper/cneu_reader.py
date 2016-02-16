@@ -22,6 +22,6 @@ class CNeuReader(DataReader):
         pass
 
     def _result_converter(self, result):
-        return result[0], bool(result[1])
+        return str(result[0]), bool(result[1])
 
 

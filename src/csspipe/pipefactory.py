@@ -14,6 +14,9 @@ class PipeFactory(object):
         self.selectors = SelectorCollection()
         pass
 
+    def create_pipe(self, pipeitems):
+        return sklearn.pipeline.Pipeline(pipeitems)
+
     def create_tfidf_nb(self):
         pipe = sklearn.pipeline.Pipeline([
             self.extractors.tfidf_vectorizer

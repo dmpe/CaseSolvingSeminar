@@ -5,7 +5,13 @@ import helper
 c = sqlite3.connect('./data.sqlite3')
 
 r = helper.CNeuReader(c)
-result = r.get_results()
+data = r.get_results()
+
+
+import cssfeature
+
+sl_data = cssfeature.CharacterFeatures.string_length(data, 0)
+
 
 
 
