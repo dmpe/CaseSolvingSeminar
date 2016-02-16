@@ -44,14 +44,14 @@ class ColumnSelector(object):
     def transform(self, x):
         string_col = x.iloc[:, 0]
         print("debug Col-Selec (STATUS only)")
-        print(string_col.shape)
+        #print(string_col.shape)
         return string_col
     
 class ColumnExtractor(object):
     def transform(self, x):
         cols = x.iloc[:, 1:]
         print("debug Col-Extrac (Rest)")
-        print(cols.shape)
+        #print(cols.shape)
         return cols
 
     def fit(self, x, y=None):

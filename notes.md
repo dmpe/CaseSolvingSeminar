@@ -16,6 +16,10 @@
  * <https://github.com/dmpe/CaseSolvingSeminar/issues/8>
 
 
+### Thursday
+* Timing -> Alex PP next week +/1 day?
+* Text summary + Keekan
+
 
 ### Broad Ideas
 * Supervised Learning (no Neural Networks at all)
