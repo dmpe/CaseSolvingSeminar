@@ -90,3 +90,5 @@ vignettes/*.pdf
 
 .httr-oauth
 .Rproj.user
+
+R_scripts_and_notebooks.Rproj
