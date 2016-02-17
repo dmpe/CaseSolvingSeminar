@@ -6,8 +6,9 @@ library(readr)
 #library(mi)
 #library(betareg)
 library(scales)
-library(h2o)
-library(mxnet)
+# library(h2o)
+# library(mxnet)
+library(reshape2)
 
 dataall <- readr::read_csv("~/Documents/caseSolvingSeminar/raw_data/data_n.csv")
 # dataall$cEXT <- as.factor(ifelse(dataall$cEXT == "y", 1, 0))
@@ -98,4 +99,30 @@ model <- mx.mlp(dmt[,10:18],dmt[,8], hidden_node=8, out_node=2, out_activation="
 preds = predict(model, dmtt[,10:18])
 pred.label = max.col(t(preds))-1
 table(pred.label, dmtt[,8])
+
+
+
+##########
+dataall <- dataall[,c(1,7:19)]
+
+asf <- melt(dataall, measure = c("cNEU", "cEXT", "cAGR", "cOPN", "cCON"))
+asf$variable <- as.character(asf$variable)
+
+trainIndex <- createDataPartition(asf$variable, p=0.66, list = F)
+dataWeNeed.train <- dataall[trainIndex, ]
+dataWeNeed.test <- dataall[-trainIndex, ]
+
+n <- names(dataWeNeed.test)
+f <- as.formula(paste("cEXT + cNEU + cAGR + cCON + cOPN ~", paste(n[!n %in% c("STATUS", "cEXT","cNEU", "cAGR", "cCON", "cOPN")], collapse = " + ")))
+mdl <- neuralnet(f, data=dataWeNeed.test, hidden=2, threshold=0.01, linear.output = F)
+print(mdl)
+
+plot.nn(mdl)
+
+
+
+
+
+
+
 
