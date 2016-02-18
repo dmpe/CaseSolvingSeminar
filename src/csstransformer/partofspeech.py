@@ -7,7 +7,8 @@ import pdb
 
 class PartOfSpeech(object):
 
-    def __init__(self):
+    def __init__(self, ignore_unknown=False):
+        self.ignore_unknown = ignore_unknown
         pass
 
     def fit(self, X, y=None):
@@ -30,9 +31,14 @@ class PartOfSpeech(object):
         tokenised = tokenizer.tokenize(sentence)
         word_tags = tagger.tag(tokenised)
 
-        tags = " ".join(
-            [ tag if tag else "None" for word, tag in word_tags]
-        )
+        if self.ignore_unknown:
+            tags = " ".join(
+                [ tag if tag else "" for word, tag in word_tags]
+            )
+        else:
+            tags = " ".join(
+                [ tag if tag else "None" for word, tag in word_tags]
+            )
         
         return tags
 
