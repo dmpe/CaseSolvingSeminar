@@ -15,11 +15,8 @@ import cssfeature
 
 import csstransformer
 
-t = csstransformer.PartOfSpeech()
+pos_transformer = csstransformer.PartOfSpeech()
 
-pos = t.transform(data.sentence)
-nor = data.sentence
-
-df = pandas.DataFrame([pos, nor], columns=['pos', 'nor'])
+ne_transformer = csstransformer.NounTransformer()
 
 
