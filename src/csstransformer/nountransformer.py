@@ -29,6 +29,7 @@ class NounTransformer(object):
         nouns = "".join(
             [ word if tag == 'NN' else '' for word, tag in word_tags]
         )
+
         return nouns
 
 
