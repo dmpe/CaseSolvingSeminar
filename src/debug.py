@@ -1,22 +1,25 @@
 
 import sqlite3
-import helper
+import csshelper
 import pandas
 
 c = sqlite3.connect('./data.sqlite3')
 
-r = helper.CNeuReader(c)
-data = r.get_results()
+r = csshelper.CNeuReader(c)
+cNeu_data = r.get_results()
 
 
 import cssfeature
 
-#sl_data = cssfeature.CharacterFeatures.string_length(data, 0)
+#sl_data = cssfeature.CharacterFeatures.string_length(cNeu_data, 0)
 
-import csstransformer
+#import csstransformer
 
-pos_transformer = csstransformer.PartOfSpeech()
+#pos_transformer = csstransformer.PartOfSpeech()
+#ne_transformer = csstransformer.NounTransformer()
 
-ne_transformer = csstransformer.NounTransformer()
+r = csshelper.SNeuReader(c)
+
+sNeu_data = r.get_results()
 
 

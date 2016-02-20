@@ -1,4 +1,6 @@
 
+import pdb
+
 import numpy
 import pandas
 import sqlite3
@@ -32,17 +34,11 @@ class DataReader(object):
         return self._create_output(iterable_data)
 
     def _create_output(self, iterable_data):
-        df = DataFrame()
-
-        if self._header:
-            df = df.append(DataFrame(columns=self._header))
 
         matrix = DataFrame(
             [self._result_converter(data) for data in iterable_data]
             , columns=self._header
         )
 
-        df = df.append(matrix, ignore_index=True)
-
-        return df
+        return matrix
 
