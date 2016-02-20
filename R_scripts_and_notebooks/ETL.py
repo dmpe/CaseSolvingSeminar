@@ -16,17 +16,14 @@ from sklearn.multiclass import *
 from sklearn.datasets import *
 from sklearn.naive_bayes import *
 from sklearn.neighbors import *
-from sklearn.cluster import *
 from sklearn.feature_selection import *
 from sklearn.ensemble import *
 from sklearn.linear_model import *
 from sklearn.tree import *
 from sklearn.grid_search import *
 from sklearn.base import *
-from sklearn.datasets.twenty_newsgroups import *
 from sklearn.decomposition import *
 from sklearn.feature_extraction import *
-from sklearn.metrics import *
 
 class ColumnAll(object):
     def fit(self, x, y=None):
@@ -36,8 +33,12 @@ class ColumnAll(object):
         # print("debug Col-Selec ALL")
         data_all = x.iloc[:, :]
         return data_all
-
+    
+# https://stackoverflow.com/questions/27810855/python-sklearn-how-to-pass-parameters-to-the-customize-modeltransformer-clas
 class ColumnSelector(object):
+    def __init__(self, some_param=True):
+        pass
+    
     def fit(self, x, y=None):
         return self
 
@@ -47,7 +48,13 @@ class ColumnSelector(object):
         #print(string_col.shape)
         return string_col
     
+    def get_params(self, deep=True):
+        return {'some_param':True}
+    
 class ColumnExtractor(object):
+    def __init__(self, some_param=True):
+        pass
+    
     def transform(self, x):
         cols = x.iloc[:, 1:]
         # print("debug Col-Extrac (Rest)")
@@ -56,7 +63,9 @@ class ColumnExtractor(object):
 
     def fit(self, x, y=None):
         return self
-    
+
+    def get_params(self, deep=True):
+        return {'some_param':True}
 class ModelTransformer(TransformerMixin):
     def __init__(self, model):
         self.model = model
