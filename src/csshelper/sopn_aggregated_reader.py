@@ -5,7 +5,7 @@ class SOpnAggregatedReader(AggregatedReader):
     
     def __init__(self, sqlite_connection, determine_value=lambda x: int(x)):
         column = 'sOpn'
-        super(SAgrReader, self).__init__(sqlite_connection, column)
+        super(SOpnAggregatedReader, self).__init__(sqlite_connection, column)
         self.determine_value = determine_value
         pass
 

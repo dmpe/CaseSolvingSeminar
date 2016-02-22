@@ -19,10 +19,13 @@ import cssfeature
 #ne_transformer = csstransformer.NounTransformer()
 
 r = csshelper.SNeuReader(c)
+r = csshelper.SNeuAggregatedReader(c)
 sNeu_data = r.get_results()
 
 import csstransformer
-smiley = csstransformer.SmileyTransformer()
+#smiley = csstransformer.SmileyTransformer()
+
+ld = csstransformer.LexicalDiversityTransformer()
 
 
 
