@@ -4,19 +4,22 @@ from nltk.tokenize import WordPunctTokenizer
 
 class TokenizerFactory(object):
     
+    __word_punct_tokenizer_impl = nltk.tokenize.WordPunctTokenizer()
+    __word_only_tokenizer_impl = nltk.tokenize.RegexpTokenizer('\w+')
 
-    class TokenizerImpl(object):
-        
-        def __init__(self):
-            self.word_punct_tokenizer = WordPunctTokenizer()
-            pass
-
-        def word_punct(self):
-            return self.word_punct_tokenizer
-
-    __tokenizer_impl = TokenizerImpl()
 
     @staticmethod
-    def create():
-        return TokenizerFactory.__tokenizer_impl
+    def create(tokenizer):
+        if tokenizer == 'word_punct':
+            return TokenizerFactory.create_word_punct()
+        if tokenizer == 'word_only':
+            return TokenizerFactory.create_word_only()
+
+    @staticmethod
+    def create_word_punct():
+        return TokenizerFactory.__word_punct_tokenizer_impl
+    
+    @staticmethod
+    def create_word_only():
+        return TokenizerFactory.__word_only_tokenizer_impl
 
