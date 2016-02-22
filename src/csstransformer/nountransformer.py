@@ -19,7 +19,7 @@ class NounTransformer(BaseTransformer):
     def _extract_nouns(self, sentence):
         
         tagger = TaggerFactory.create().unigram()
-        tokenizer = TokenizerFactory.create().word_punct()
+        tokenizer = TokenizerFactory.create_word_punct()
 
         tokenized = tokenizer.tokenize(sentence)
         word_tags = tagger.tag(tokenized)
