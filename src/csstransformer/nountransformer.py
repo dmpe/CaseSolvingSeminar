@@ -15,7 +15,6 @@ class NounTransformer(BaseTransformer):
             self._extract_nouns
         )
         return cpy
-        pass
 
     def _extract_nouns(self, sentence):
         

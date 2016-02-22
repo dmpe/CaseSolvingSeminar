@@ -11,9 +11,8 @@ from .basetransformer import BaseTransformer
 from .partofspeech import PartOfSpeech
 from .nountransformer import NounTransformer
 from .smiley import SmileyTransformer
-
-
-
+from .sentencelength import SentenceLengthTransformer
+from .numberofdots import NumberOfDotsTransformer
 
 
 
