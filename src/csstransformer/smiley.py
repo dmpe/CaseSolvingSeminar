@@ -11,6 +11,13 @@ class SmileyTransformer(object):
         , re.compile('(<3+)') # matches <3 <33 <333 ...
         , re.compile('(^[_.-]^)') # matches ^_^ ^-^ ^.^
     ]
+
+    smileys = [
+        ':)', ':(', ':-)', ':-(', 
+        ':D', 'D:',
+        '<3', '<33', '<333',
+        '^_^', '^-^', '^.^'
+    ]
     
     def __init__(self):
         pass

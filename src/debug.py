@@ -5,8 +5,8 @@ import pandas
 
 c = sqlite3.connect('./data.sqlite3')
 
-r = csshelper.CNeuReader(c)
-cNeu_data = r.get_results()
+#r = csshelper.CNeuReader(c)
+#cNeu_data = r.get_results()
 
 
 import cssfeature
@@ -19,7 +19,12 @@ import cssfeature
 #ne_transformer = csstransformer.NounTransformer()
 
 r = csshelper.SNeuReader(c)
-
 sNeu_data = r.get_results()
+
+import csstransformer
+smiley = csstransformer.SmileyTransformer()
+
+
+
 
 
