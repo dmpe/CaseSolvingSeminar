@@ -1,18 +1,15 @@
 
 import nltk
-from .tagging import TaggerFactory
-from .tokenizer import TokenizerFactory
 
-import pdb
+from . import BaseTransformer
+from . import TaggerFactory
+from . import TokenizerFactory
 
-class PartOfSpeech(object):
+class PartOfSpeech(BaseTransformer):
 
     def __init__(self, ignore_unknown=False):
         self.ignore_unknown = ignore_unknown
         pass
-
-    def fit(self, X, y=None):
-        return self
 
     def transform(self, series, col_name=None):
         cpy = series.copy()

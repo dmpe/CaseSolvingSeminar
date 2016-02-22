@@ -1,6 +1,7 @@
 
 import re
-import pdb
+
+from . import BaseTransformer
 
 
 class SmileyTransformer(object):

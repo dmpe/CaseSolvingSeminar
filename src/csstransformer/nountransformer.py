@@ -1,14 +1,13 @@
 
-from .tagging import TaggerFactory
-from .tokenizer import TokenizerFactory
+from . import BaseTransformer
 
-class NounTransformer(object):
+from . import TaggerFactory
+from . import TokenizerFactory
+
+class NounTransformer(BaseTransformer):
     
     def __init__(self):
         pass
-
-    def fit(self, X, y=None):
-        return self
 
     def transform(self, series):
         cpy = series.copy()

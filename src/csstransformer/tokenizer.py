@@ -2,7 +2,6 @@
 import nltk
 from nltk.tokenize import WordPunctTokenizer
 
-
 class TokenizerFactory(object):
     
 

@@ -1,9 +1,8 @@
 
 import nltk
+
 from nltk.corpus import treebank
 from nltk.tag import UnigramTagger
-
-
 
 class TaggerFactory(object):
 
