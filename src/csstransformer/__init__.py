@@ -17,4 +17,6 @@ from .numberofdots import NumberOfDotsTransformer
 from .stemmedwords import StemmedWordsTransformer
 from .lexicaldiversity import LexicalDiversityTransformer
 
+from .aggregator import Aggregator
+
 
