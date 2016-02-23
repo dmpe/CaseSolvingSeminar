@@ -1,5 +1,9 @@
 
-class BaseTransformer(object):
+
+import sklearn
+import sklearn.base
+
+class BaseTransformer(sklearn.base.BaseEstimator):
 
     def __init__(self):
         pass
