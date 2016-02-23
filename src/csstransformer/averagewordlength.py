@@ -20,7 +20,7 @@ class AverageWordLength(BaseTransformer):
     def _calculate_average_word_length(self, sentence):
         tokens = self.tokenizer.tokenize(sentence)
 
-        avg = sum([len(word) for word in token]) / len(tokens)
+        avg = sum([len(word) for word in tokens]) / len(tokens)
 
         return avg
 
