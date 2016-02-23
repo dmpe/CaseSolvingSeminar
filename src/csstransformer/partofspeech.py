@@ -23,7 +23,7 @@ class PartOfSpeech(BaseTransformer):
         sentence = str(sentence)
 
         tagger = TaggerFactory.create().unigram()
-        tokenizer = TokenizerFactory.create().word_punct()
+        tokenizer = TokenizerFactory.create_word_punct()
 
         tokenised = tokenizer.tokenize(sentence)
         word_tags = tagger.tag(tokenised)
