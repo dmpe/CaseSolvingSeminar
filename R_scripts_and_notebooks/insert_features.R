@@ -4,19 +4,19 @@
 # https://github.com/Charudatt89/Personality_Recognition/blob/master/22-9-PersonalityRecognition/SourceCode/FEATURE_BASED_APPROACH/source_code/pos_tagging_2.py
 # https://en.wikipedia.org/wiki/English_personal_pronouns
 
-library(openNLP)
-library(NLP)
-library(RWeka)
-library(RWekajars)
+# library(openNLP)
+# library(NLP)
+# library(RWeka)
+# library(RWekajars)
 library(stringi)
 library(stringr)
 library(quanteda)
 library(SnowballC)
 library(readr)
-library(wordcloud)
+# library(wordcloud)
 library(syuzhet)
 library(qdap)
-library(lubridate)
+# library(lubridate)
 library(jsonlite)
 
 # tagger_path <- "/home/jm/Documents/stanford-corenlp-full-2015-12-09"
@@ -61,7 +61,7 @@ for (i in 1:length(data_n$STATUS)) {
 
 for (k in 1:length(data_n$STATUS)) {
   splittedWords <- gsub("[^[:alnum:][:space:]']", "", tolower(stri_split_fixed(data_n$STATUS[k], " ")[[1]]))
-  dfmStatus <- dfm(data_n$STATUS[k], verbose = F, removeNumbers = F, removePunct = F, removeSeparators = F)
+  dfmStatus <- dfm(data_n$STATUS[k], verbose = F, removeNumbers = F, removePunct = F, stem = F, removeSeparators = F)
   
   data_n$Lexical_Diversity[[k]] <- round(quanteda::lexdiv(dfmStatus, measure = "TTR"), 3)
   data_n$Number_of_FunctionalWords[[k]] <- sum(splittedWords %in% fw)
@@ -77,6 +77,15 @@ write.csv(data_n, "~/Documents/caseSolvingSeminar/raw_data/data_n.csv")
 # write.csv(data_n$STATUS, "~/Documents/caseSolvingSeminar/raw_data/data_statuses_only.csv", row.names = FALSE)
 # data_n <- readr::read_csv("~/Documents/caseSolvingSeminar/raw_data/data_n.csv")
 
-
+############# Joined strings
+# data_n <- readr::read_csv("~/Documents/caseSolvingSeminar/raw_data/data_n.csv")
+# 
+# 
+# joined_str <- data_n %>%
+#   group_by("#AUTHID") %>%
+#   paste(data_n$STATUS, collapse=" ")
+# 
+# myby <- by(data_n$STATUS,data_n$`#AUTHID`,function(x)paste(x,collapse=" "))
+# myby <- data.frame(id=c(myby))
 
 
