@@ -2,7 +2,7 @@
 
 from . import BaseTransformer
 
-class NumberOfDots(BaseTransformer):
+class NumberOfCommas(BaseTransformer):
 
     def __init__(self):
         pass
@@ -10,7 +10,7 @@ class NumberOfDots(BaseTransformer):
     def transform(self, series):
         cpy = series.copy()
         cpy = cpy.apply(
-            lambda s: s.count('.')
+            lambda s: s.count(',')
         )
         return cpy
 

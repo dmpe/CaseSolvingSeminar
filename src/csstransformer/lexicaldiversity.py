@@ -4,7 +4,7 @@ from . import BaseTransformer
 from . import TokenizerFactory
 from . import StemmerFactory
 
-class LexicalDiversityTransformer(BaseTransformer):
+class LexicalDiversity(BaseTransformer):
     
     def __init__(self, stemmer=None):
         if stemmer:

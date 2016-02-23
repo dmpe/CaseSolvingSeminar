@@ -10,12 +10,16 @@ from .basetransformer import BaseTransformer
 
 # my transformers
 from .partofspeech import PartOfSpeech
-from .nountransformer import NounTransformer
-from .smiley import SmileyTransformer
-from .sentencelength import SentenceLengthTransformer
-from .numberofdots import NumberOfDotsTransformer
-from .stemmedwords import StemmedWordsTransformer
-from .lexicaldiversity import LexicalDiversityTransformer
+from .nouns import Nouns
+from .smiley import Smileys
+from .sentencelength import SentenceLength
+from .stemmedwords import StemmedWords
+from .lexicaldiversity import LexicalDiversity
+
+from .numberofdots import NumberOfDots
+from .numberofcommas import NumberOfCommas
+from .numberofcolons import NumberOfColons
+from .numberofsemicolons import NumberOfSemicolons
 
 from .aggregator import Aggregator
 

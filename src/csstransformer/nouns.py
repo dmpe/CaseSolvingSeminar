@@ -4,7 +4,7 @@ from . import BaseTransformer
 from . import TaggerFactory
 from . import TokenizerFactory
 
-class NounTransformer(BaseTransformer):
+class Nouns(BaseTransformer):
     
     def __init__(self):
         pass

@@ -2,7 +2,7 @@
 from . import StemmerFactory
 from . import BaseTransformer
 
-class StemmedWordsTransformer(BaseTransformer):
+class StemmedWords(BaseTransformer):
     
     def __init__(self, stemmer=None):
         if stemmer:

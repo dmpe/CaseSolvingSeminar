@@ -2,7 +2,7 @@
 
 from . import BaseTransformer
 
-class SentenceLengthTransformer(BaseTransformer):
+class SentenceLength(BaseTransformer):
 
     def __init__(self):
         pass
