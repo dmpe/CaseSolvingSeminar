@@ -21,6 +21,7 @@ from .numberofdots import NumberOfDots
 from .numberofcommas import NumberOfCommas
 from .numberofcolons import NumberOfColons
 from .numberofsemicolons import NumberOfSemicolons
+form .numberofpropnames import NumberOfPropnames
 
 from .aggregator import Aggregator
 
