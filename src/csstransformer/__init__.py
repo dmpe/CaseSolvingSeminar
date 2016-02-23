@@ -15,6 +15,7 @@ from .smiley import Smileys
 from .sentencelength import SentenceLength
 from .stemmedwords import StemmedWords
 from .lexicaldiversity import LexicalDiversity
+from .averagewordlength import AverageWordLength
 
 from .numberofdots import NumberOfDots
 from .numberofcommas import NumberOfCommas
