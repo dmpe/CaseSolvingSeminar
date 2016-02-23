@@ -1,5 +1,4 @@
 
-
 # helpers
 from .tokenizer import TokenizerFactory
 from .tagging import TaggerFactory
@@ -23,6 +22,7 @@ from .numberofcommas import NumberOfCommas
 from .numberofcolons import NumberOfColons
 from .numberofsemicolons import NumberOfSemicolons
 from .numberofpronouns import NumberOfPronouns
+from .numberofwords import NumberOfWords
 from .numberofpropnames import NumberOfPropnames
 from .numberoffunctionalwords import NumberOfFunctionalWords
 
