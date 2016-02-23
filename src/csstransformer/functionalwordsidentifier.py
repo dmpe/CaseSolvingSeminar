@@ -20,5 +20,5 @@ class FunctionalWordsIdentifierFactory(object):
 
     @staticmethod
     def create():
-        return FunctionalWordsIdentifier.__impl
+        return FunctionalWordsIdentifierFactory.__impl
 

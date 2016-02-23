@@ -4,7 +4,7 @@
 from .tokenizer import TokenizerFactory
 from .tagging import TaggerFactory
 from .stemmer import StemmerFactory
-from .functionalwordsidentifer import FunctionalWordsIdentifierFactory
+from .functionalwordsidentifier import FunctionalWordsIdentifierFactory
 
 # base class for transformers 
 from .basetransformer import BaseTransformer
@@ -22,6 +22,7 @@ from .numberofdots import NumberOfDots
 from .numberofcommas import NumberOfCommas
 from .numberofcolons import NumberOfColons
 from .numberofsemicolons import NumberOfSemicolons
+from .numberofpronouns import NumberOfPronouns
 from .numberofpropnames import NumberOfPropnames
 from .numberoffunctionalwords import NumberOfFunctionalWords
 

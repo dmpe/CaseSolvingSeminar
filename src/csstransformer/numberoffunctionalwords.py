@@ -3,7 +3,7 @@ from . import BaseTransformer
 
 from . import TaggerFactory
 from . import TokenizerFactory
-form . import FunctionalWordsIdentifierFactory
+from . import FunctionalWordsIdentifierFactory
 
 class NumberOfFunctionalWords(BaseTransformer):
     
@@ -24,9 +24,10 @@ class NumberOfFunctionalWords(BaseTransformer):
 
         tokens = tokenizer.tokenize(sentence)
 
+        [x for x in y]
+
         count_list = [
-            True if self.fw_identifier.is_functional_word(t)
-            for t in tokens
+            True for t in tokens if self.fw_identifier.is_functional_word(t)
         ]
 
         return len(count_list)

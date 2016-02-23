@@ -25,7 +25,7 @@ class Nouns(BaseTransformer):
         word_tags = tagger.tag(tokenized)
 
         nouns = "".join(
-            [ word if tag.count('NN') > 0 else '' for word, tag in word_tags]
+            [ word for word, tag in word_tags if tag.count('NN') > 0]
         )
 
         return nouns
