@@ -7,7 +7,6 @@ class Aggregator(object):
         self.transformers = transformers
         pass
 
-
     def fit(self, X, y=None):
         return self
 
@@ -16,3 +15,5 @@ class Aggregator(object):
         df = pandas.concat(objs=tseries, axis=1)
         return df
 
+    def get_params(deep=True):
+        return " ".join([ transfomer_desc for transformer_desc, transformer_inst in self.transformers])
