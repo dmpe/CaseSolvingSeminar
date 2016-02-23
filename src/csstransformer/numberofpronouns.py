@@ -25,7 +25,7 @@ class NumberOfPronouns(BaseTransformer):
         word_tags = tagger.tag(tokenized)
 
         pronouns = [
-            word for word, tag in word_tags if tag.count('PNP') > 0
+            word for word, tag in word_tags if tag and tag.count('PNP') > 0
         ]
 
         return len(pronouns)
