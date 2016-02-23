@@ -1,7 +1,10 @@
 
 import pandas
 
-class Aggregator(object):
+import sklearn
+import sklearn.base
+
+class Aggregator(sklearn.base.BaseEstimator):
 
     def __init__(self, transformers):
         self.transformers = transformers
@@ -15,5 +18,4 @@ class Aggregator(object):
         df = pandas.concat(objs=tseries, axis=1)
         return df
 
-    def get_params(deep=True):
-        return " ".join([ transfomer_desc for transformer_desc, transformer_inst in self.transformers])
+
