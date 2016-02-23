@@ -3,6 +3,7 @@
 # https://stackoverflow.com/questions/8697079/remove-all-punctuation-except-apostrophes-in-r
 # https://github.com/Charudatt89/Personality_Recognition/blob/master/22-9-PersonalityRecognition/SourceCode/FEATURE_BASED_APPROACH/source_code/pos_tagging_2.py
 # https://en.wikipedia.org/wiki/English_personal_pronouns
+# https://scripted.com/engineering/lexical-diversity-writing/
 
 # library(openNLP)
 # library(NLP)
@@ -44,6 +45,15 @@ data_sentiment$Sentiment_Numeric <- ifelse(data_sentiment$Sentiment_Word == "Neu
 )
 data_sentiment$result <- NULL
 
+cor_lexical_diver <- function(text) {
+  if(stri_count_words(text) == 0) {
+    lex_div <- 0 
+  } else {
+    lex_div <- sum(stri_count_words(stri_unique(stri_extract_all_words(text)[[1]])) / stri_count_words(text))
+  }
+  return(lex_div)
+}
+
 data_n <- readr::read_csv("~/Documents/caseSolvingSeminar/raw_data/data_utf8.csv")
 data_n$StringLength <- stri_length(data_n$STATUS)
 
@@ -61,9 +71,7 @@ for (i in 1:length(data_n$STATUS)) {
 
 for (k in 1:length(data_n$STATUS)) {
   splittedWords <- gsub("[^[:alnum:][:space:]']", "", tolower(stri_split_fixed(data_n$STATUS[k], " ")[[1]]))
-  dfmStatus <- dfm(data_n$STATUS[k], verbose = F, removeNumbers = F, removePunct = F, stem = F, removeSeparators = F)
-  
-  data_n$Lexical_Diversity[[k]] <- round(quanteda::lexdiv(dfmStatus, measure = "TTR"), 3)
+  data_n$Lexical_Diversity[[k]] <- round(cor_lexical_diver(data_n$STATUS[k]), 2)
   data_n$Number_of_FunctionalWords[[k]] <- sum(splittedWords %in% fw)
   data_n$Number_of_Pronouns[[k]] <- sum(splittedWords %in% personalPronouns)
   data_n$Number_of_PROPNAMEs[[k]] <- sum(stri_count_fixed(data_n$STATUS[k], "*PROPNAME*"))
@@ -87,5 +95,7 @@ write.csv(data_n, "~/Documents/caseSolvingSeminar/raw_data/data_n.csv")
 # 
 # myby <- by(data_n$STATUS,data_n$`#AUTHID`,function(x)paste(x,collapse=" "))
 # myby <- data.frame(id=c(myby))
+
+
 
 
