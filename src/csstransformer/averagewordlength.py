@@ -1,5 +1,6 @@
 
 
+from . import BaseTransformer
 
 from . import TokenizerFactory
 
