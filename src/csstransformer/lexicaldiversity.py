@@ -31,11 +31,12 @@ class LexicalDiversity(BaseTransformer):
 
         count_unique_stems = len(unique_stems)
 
-        if count_unique_stems > 0:
-            lexical_diversity = len(tokenized_sentence) / count_unique_stems
+        count_sentence_words = len(tokenized_sentence)
+
+        if count_sentence_words > 0:
+            lexical_diversity = count_unique_stems / count_sentence_words
         else:
             lexical_diversity = 0
 
         return lexical_diversity
-
 
