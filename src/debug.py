@@ -23,9 +23,9 @@ r = csshelper.SNeuAggregatedReader(c)
 sNeu_data = r.get_results()
 
 import csstransformer
-#smiley = csstransformer.SmileyTransformer()
+smiley = csstransformer.Smileys()
 
-ld = csstransformer.LexicalDiversityTransformer()
+#ld = csstransformer.LexicalDiversity()
 
 
 

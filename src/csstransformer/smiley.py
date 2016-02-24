@@ -4,7 +4,7 @@ import re
 from . import BaseTransformer
 
 
-class Smileys(object):
+class Smileys(BaseTransformer):
 
     smiley_regex = [
         re.compile('(:-?[\(\)])') # matches :) :( :-) :-(
@@ -38,7 +38,7 @@ class Smileys(object):
         found_smileys = [
             item 
             for r
-            in SmileyTransformer.smiley_regex
+            in Smileys.smiley_regex
                 for item
                 in r.findall(sentence)
         ]
