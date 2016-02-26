@@ -4,7 +4,8 @@
 ### Customer profiling using stylometric features
 
 Paper to be available soon at: [https://dmpe.github.io/PapersAndArticles/](https://dmpe.github.io/PapersAndArticles/)
-Final presentation to be found here: [http://www.slideshare.net/F789GH/customer-linguistic-profiling](http://www.slideshare.net/F789GH/customer-linguistic-profiling)
+
+The final presentation to be found here: [http://www.slideshare.net/F789GH/customer-linguistic-profiling](http://www.slideshare.net/F789GH/customer-linguistic-profiling)
 
 **Notes**:
 * Data are available to the public for download from <http://mypersonality.org/wiki/doku.php?id=wcpr13>
