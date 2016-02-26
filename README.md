@@ -14,7 +14,7 @@ Paper to be available soon at: [https://dmpe.github.io/PapersAndArticles/](https
 		* Derived columns from FB's statuses which only use 13 stylometric features. <https://github.com/dmpe/CaseSolvingSeminar/blob/github/src/derived_columns_only.ipynb>
 		* Combination of both approaches above: use of statuses and 13 derived stylometric features. <https://github.com/dmpe/CaseSolvingSeminar/blob/github/src/derived_columns.ipynb>
 
-Team members were:
+**Team members were**:
 
 * [@dmpe](https://github.com/dmpe)
 * [@dustinwind](https://github.com/dustywind)
